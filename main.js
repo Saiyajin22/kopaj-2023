@@ -14,8 +14,7 @@ app.use(bodyParser.text({ type: 'text/plain' }))
 app.post('/ground/task1', function (req, res) {
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.status(201);
-   res.send('Hello');
+   res.status(200).send();
 })
 
 app.post('/level1/task1', function (req, res) {
