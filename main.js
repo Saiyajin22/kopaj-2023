@@ -110,8 +110,6 @@ app.post('/level1/task2', function (req, res) {
           allCards.push(rank + suit);
         }
       }
-    
-      // Adding the jokers
       allCards.push('JK', 'JK');
     
       return allCards;
