@@ -211,7 +211,7 @@ app.post('/level1/task3', function (req, res) {
       for (let j = 2; j < req.body.split("\n")[i].length; j++ ) {
          try {
             if (
-               row[i-1,j-2] == '(' &&
+                req.body.split("\n")[i-1][j-2] == '(' &&
                req.body.split("\n")[i-1][j-1] == '\\' &&
                req.body.split("\n")[i-1][j] == '(' &&
                req.body.split("\n")[i-1][j-1] == '\\' &&
@@ -228,10 +228,13 @@ app.post('/level1/task3', function (req, res) {
                req.body.split("\n")[i+1][j+1] == '(' &&
                req.body.split("\n")[i+1][j+2] == '"' &&
                req.body.split("\n")[i+1][j+3] == ')'
-            )
-               res.send(`${i} ${j}`)
+            ) {
+               console.log(`${i} ${j}`);
+               res.send(`${i} ${j}`);
+            }
+
          } catch (error) {
-            
+
          }
       }
    }
