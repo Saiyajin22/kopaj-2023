@@ -12,18 +12,21 @@ app.use(bodyParser.text({ type: 'text/plain' }))
 
 
 app.post('/ground/task1', function (req, res) {
+   console.log("ground/task1")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
    res.status(200).send();
 })
 
 app.post('/ground/task2', function (req, res) {
+   console.log("ground/task2")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
    res.send('Hello');
 })
 
 app.post('/ground/task3', function (req, res) {
+   console.log("ground/task3")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
    res.send('Hello');
@@ -31,38 +34,47 @@ app.post('/ground/task3', function (req, res) {
 
 
 app.post('/level1/task1', function (req, res) {
+   console.log("level1/task1")
    res.send('Hello');
 })
 
 app.post('/level1/task2', function (req, res) {
+   console.log("level1/task2")
    res.send('Hello');
 })
 
 app.post('/level1/task3', function (req, res) {
+   console.log("level1/task3")
    res.send('Hello');
 })
 
 app.post('/level2/task1', function (req, res) {
+   console.log("level2/task1")
    res.send("Hello");
 })
 
 app.post('/level2/task2', function (req, res) {
+   console.log("level2/task2")
    res.send("Hello");
 })
 
 app.post('/level2/task3', function (req, res) {
+   console.log("level2/task3")
    res.send("Hello");
 })
 
 app.post('/level3/task1', function (req, res) {
+   console.log("level3/task1")
    res.send('Hello');
 })
 
 app.post('/level3/task2', function (req, res) {
+   console.log("level3/task2")
    res.send('Hello');
 })
 
 app.post('/level3/task3', function (req, res) {
+   console.log("level3/task3")
    res.send('Hello');
 })
 
