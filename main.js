@@ -61,22 +61,22 @@ app.post('/ground/task3', function (req, res) {
    
    let rem = req.body
    let str = ""
-   let yrs = rem % 31556926
+   let yrs = (rem - rem % 31556926) / 31556926
    if (yrs !== 0) {
       str += `${yrs} year ${ yrs == 1 ? '' :'s'}`
       rem -= yrs * 31556926
    }
-   let ms = rem % 2629743
+   let ms = (rem - rem % 2629743) / 2629743
    if (ms !== 0) {
       str += `$, {ms} month ${ ms == 1 ? '' :'s'}`
       rem -= ms * 2629743
    }
-   let hrs = rem % 3600
+   let hrs = (rem - rem % 3600) / 3600
    if (hrs !== 0) {
       str += `$, {hrs} hour ${ hrs == 1 ? '' :'s'}`
       rem -= hrs * 3600
    }
-   let mins = rem % 60
+   let mins = (rem - rem % 60) / 60
    if (mins !== 0) {
       str += `$, {mins} hour ${ mins == 1 ? '' :'s'}`
       rem -= mins * 60
