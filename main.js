@@ -262,6 +262,7 @@ app.post('/level1/task3', function (req, res) {
 
 app.post('/level2/task1', function (req, res) {
    console.log("level2/task1")
+   console.log("Body: " + req.body)
    console.log("Headers: " + JSON.stringify(req.headers))
    const isPrime = num => {
       for(let i = 2, s = Math.sqrt(num); i <= s; i++) {
