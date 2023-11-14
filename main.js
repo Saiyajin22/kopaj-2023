@@ -196,14 +196,80 @@ app.post('/level1/task3', function (req, res) {
    console.log("level1/task3")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.send('Hello');
+
+   function findIntactBunny(input) {
+      const rows = input.split('\n');
+    
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+    
+        for (let j = 0; j < row.length; j++) {
+          if (isBunnyNose(rows, i, j)) {
+            return `${i},${j}`;
+          }
+        }
+      }
+    
+      return 'No intact bunny found.';
+    }
+    
+    function isBunnyNose(rows, i, j) {
+      const bunnyPattern = [
+        '(-.-)',
+        '("-.-")',
+        '(-.o_("))',
+        '(-.-o_("))',
+        '(-.-) )("',
+        '(-.-) o_("',
+        '(-.-o_(")(")',
+        '(-.-o_(o_(")(")',
+      ];
+    
+      for (const pattern of bunnyPattern) {
+        if (checkPattern(rows, i, j, pattern)) {
+          return true;
+        }
+      }
+    
+      return false;
+    }
+    
+    function checkPattern(rows, startRow, startCol, pattern) {
+      const patternRows = pattern.split(' ');
+    
+      for (let i = 0; i < patternRows.length; i++) {
+        const patternRow = patternRows[i];
+        for (let j = 0; j < patternRow.length; j++) {
+          const char = patternRow[j];
+          if (rows[startRow + i] && rows[startRow + i][startCol + j] !== char) {
+            return false;
+          }
+        }
+      }
+    
+      return true;
+    }
+
+    const result = findIntactBunny(req.body);
+
+   res.send(result);
 })
 
 app.post('/level2/task1', function (req, res) {
    console.log("level2/task1")
    console.log("Headers: " + JSON.stringify(req.headers))
-   console.log("Body: " + req.body)
-   res.send("Hello");
+   const isPrime = num => {
+      for(let i = 2, s = Math.sqrt(num); i <= s; i++) {
+          if(num % i === 0) return false;
+      }
+      return num > 1;
+   }
+   const ans = []
+   for (const i = req.body[0]; i <= req.body[1]; i++){
+      if (isPrime(i))
+         ans.push(i)
+   }
+   res.send(ans);
 })
 
 app.post('/level2/task2', function (req, res) {
