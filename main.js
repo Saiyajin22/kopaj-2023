@@ -42,19 +42,18 @@ app.post('/ground/task3', function (req, res) {
    console.log("Body: " + req.body)
 
    if(req.body === 0){
-      res.send("Now");
+      res.send("now");
    }
    else if(req.body < 60){
-      res.send(req.body + "seconds");
+      res.send(req.body + " second");
    }
-   else if(req.body > 60){
-      const hours = Math.floor(req.body / 3600)
-      const minutes = Math.floor((req.body % 3600) / 60)
-      res.send(hours + "hour, " + minutes + " minute and " + "");
+   else if(req.body > 60 && req.body < 3600){
+      const minutes = req.body / 60;
+      const seconds = req.body % 60;
+
+      res.send(minutes + " minute and " + seconds + " seconds");
 
    }
-
-   res.send('Hello');
 })
 
 
