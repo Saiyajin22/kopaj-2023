@@ -38,11 +38,11 @@ app.post('/ground/task2', function (req, res) {
 
       while (product <= num) {
          if (product === num) {
-            return n;
+            return `${num} = ${n}!`;
          }
          product *= ++n;
       }
-      return "NONE";
+      return `${num} = NONE`;
    }
 
    const factRes = reverseFactorial(req.body);
