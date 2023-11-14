@@ -220,7 +220,7 @@ app.post('/level1/task3', function (req, res) {
             if (rows[i+1].includes(intactBunnyPattern[1]) && rows[i+1].indexOf(intactBunnyPattern[1][0]) ===rows[i].indexOf(intactBunnyPattern[0][0])){
                if(rows[i+2].includes(intactBunnyPattern[2]) && rows[i+2].indexOf(intactBunnyPattern[2][0]) === rows[i+1].indexOf(intactBunnyPattern[1][0])) {
                   console.log("asdasda"+ i + " " + rows[i+1].indexOf(intactBunnyPattern[1][2]))
-                  res.send(i + " " + rows[i+1].indexOf(intactBunnyPattern[1][2]));
+                  return i + " " + rows[i+1].indexOf(intactBunnyPattern[1][2]);
                }
             }
          }
@@ -248,7 +248,8 @@ app.post('/level1/task3', function (req, res) {
    //    return true;
    //  }
 
-    findIntactBunnyNose(req.body);
+    const result = findIntactBunnyNose(req.body);
+    res.send(result);
 })
 
 app.post('/level2/task1', function (req, res) {
