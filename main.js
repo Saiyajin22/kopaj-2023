@@ -202,15 +202,15 @@ app.post('/level1/task3', function (req, res) {
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
 
-   function findIntactBunny(input) {
+   function findIntactBunnyNose(input) {
       const rows = input.split('\n');
     
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
     
         for (let j = 0; j < row.length; j++) {
-          if (isBunnyNose(rows, i, j)) {
-            return `${i},${j}`;
+          if (isIntactBunnyNose(rows, i, j)) {
+            return `${i} ${j}`;
           }
         }
       }
@@ -218,35 +218,18 @@ app.post('/level1/task3', function (req, res) {
       return 'No intact bunny found.';
     }
     
-    function isBunnyNose(rows, i, j) {
-      const bunnyPattern = [
+    function isIntactBunnyNose(rows, i, j) {
+      const intactBunnyPattern = [
+        '\\(\\',
         '(-.-)',
-        '("-.-")',
-        '(-.o_("))',
-        '(-.-o_("))',
-        '(-.-) )("',
-        '(-.-) o_("',
-        '(-.-o_(")(")',
-        '(-.-o_(o_(")(")',
+        '(")(")',
       ];
     
-      for (const pattern of bunnyPattern) {
-        if (checkPattern(rows, i, j, pattern)) {
-          return true;
-        }
-      }
-    
-      return false;
-    }
-    
-    function checkPattern(rows, startRow, startCol, pattern) {
-      const patternRows = pattern.split(' ');
-    
-      for (let i = 0; i < patternRows.length; i++) {
-        const patternRow = patternRows[i];
-        for (let j = 0; j < patternRow.length; j++) {
-          const char = patternRow[j];
-          if (rows[startRow + i] && rows[startRow + i][startCol + j] !== char) {
+      for (let k = 0; k < intactBunnyPattern.length; k++) {
+        const patternRow = intactBunnyPattern[k];
+        for (let l = 0; l < patternRow.length; l++) {
+          const char = patternRow[l];
+          if (rows[i + k] && rows[i + k][j + l] !== char) {
             return false;
           }
         }
@@ -255,7 +238,7 @@ app.post('/level1/task3', function (req, res) {
       return true;
     }
 
-    const result = findIntactBunny(req.body);
+    const result = findIntactBunnyNose(req.body);
 
    res.send(result);
 })
