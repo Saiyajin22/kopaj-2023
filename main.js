@@ -87,6 +87,12 @@ app.post('/ground/task3', function (req, res) {
    res.send(str)
 })
 
+app.post('/ground/bonus', function (req, res) {
+   console.log("/ground/bonus")
+   console.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
+})
+
 
 app.post('/level1/task1', function (req, res) {
    console.log("level1/task1")
