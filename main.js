@@ -58,19 +58,33 @@ app.post('/ground/task3', function (req, res) {
    if(req.body === 0){
       res.send("now");
    }
-   else if(req.body < 60){
-      res.send(req.body + " second");
+   
+   let rem = req.body
+   let str = ""
+   let yrs = rem % 31556926
+   if (yrs !== 0) {
+      str += `${yrs} year ${ yrs == 1 ? '' :'s'}`
+      rem -= yrs * 31556926
    }
-   else if(req.body >= 60 && req.body < 3600){
-      const minutes = req.body / 60;
-      const seconds = req.body % 60;
-      res.send(minutes + " minute and " + seconds + " seconds");
+   let ms = rem % 2629743
+   if (ms !== 0) {
+      str += `$, {ms} month ${ ms == 1 ? '' :'s'}`
+      rem -= ms * 2629743
    }
-   else if(req.body >= 3600 && req.body < 86400) {
-      const hours = req.body / 3600;
-      const minutes = req.body % 60;
-      res.send( minutes + " minute and " + seconds + " seconds");
+   let hrs = rem % 3600
+   if (hrs !== 0) {
+      str += `$, {hrs} hour ${ hrs == 1 ? '' :'s'}`
+      rem -= hrs * 3600
    }
+   let mins = rem % 60
+   if (mins !== 0) {
+      str += `$, {mins} hour ${ mins == 1 ? '' :'s'}`
+      rem -= mins * 60
+   }
+   if (rem !== 0){
+      str += `$ and {rem} second ${ rem == 1 ? '' :'s'}`
+   }
+   res.send(str)
 })
 
 
