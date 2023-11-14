@@ -22,7 +22,18 @@ app.post('/ground/task2', function (req, res) {
    console.log("ground/task2")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.send('Hello');
+   let number = req.body;
+   let result = "NONE";
+   for(let i = 2; i < number; i++) {
+      number = number / i;
+      if(number === 1) {
+         result = i;
+         break;
+      }
+   }
+   console.log("number: ", number)
+
+   res.send(result);
 })
 
 app.post('/ground/task3', function (req, res) {
