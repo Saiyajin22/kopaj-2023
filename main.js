@@ -71,6 +71,11 @@ app.post('/ground/task3', function (req, res) {
       str += `${str.length !== 0 ? ', ' : ''}${ms} month${ ms == 1 ? '' :'s'}`
       rem -= ms * 2629743
    }
+   let ds = (rem - rem % 86400) / 86400
+   if (ds !== 0) {
+      str += `${str.length !== 0 ? ', ' : ''}${ds} day${ ds == 1 ? '' :'s'}`
+      rem -= ds * 86400
+   }
    let hrs = (rem - rem % 3600) / 3600
    if (hrs !== 0) {
       str += `${str.length !== 0 ? ', ' : ''}${hrs} hour${ hrs == 1 ? '' :'s'}`
