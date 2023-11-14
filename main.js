@@ -220,7 +220,7 @@ app.post('/level1/task3', function (req, res) {
     
     function isIntactBunnyNose(rows, i, j) {
       const intactBunnyPattern = [
-        '\\(\\',
+        '(\\(\\',
         '(-.-)',
         '(")(")',
       ];
