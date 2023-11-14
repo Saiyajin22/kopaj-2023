@@ -96,6 +96,7 @@ app.post('/ground/bonus', function (req, res) {
    console.log("/ground/bonus")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
+   res.send("2021-08-19")
 })
 
 
