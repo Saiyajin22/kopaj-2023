@@ -328,14 +328,15 @@ app.post('/level3/task1', function (req, res) {
    const paths = [[0, "START", new Set(["Start"])]]
    const newpaths = []
 
-   while(paths.some(p => p[2].length != pl)) {
+   while(paths.some(p => p[2].length() != pl)) {
 
       for (const path of paths) {
          for (const edge of req.body.edges) {
             if (edge.source.name == path[1]) {
                newpaths.push([
                   path[0] + edge.destination.moneySpentOnVisit,
-                  edge.destination.name], paths[2].add(edge.destination.name))
+                  edge.destination.name, new Set()])
+               newpaths.reverse()[2].add(edge.destination.name).reverse()
                }
             }
          }
@@ -343,7 +344,7 @@ app.post('/level3/task1', function (req, res) {
          newpaths = []
       }
    
-   const sol = paths.find(p => p[2].length == pl)
+   const sol = paths.find(p => p[2].length() == pl)
    if (sol[0] > 5000) {
       res.json({
          "pubs" : [ "START", "KOLI" ],
