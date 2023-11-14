@@ -47,28 +47,37 @@ app.post('/ground/task3', function (req, res) {
    else if(req.body < 60){
       res.send(req.body + " second");
    }
-   else if(req.body > 60 && req.body < 3600){
+   else if(req.body >= 60 && req.body < 3600){
       const minutes = req.body / 60;
       const seconds = req.body % 60;
-
       res.send(minutes + " minute and " + seconds + " seconds");
-
+   }
+   else if(req.body >= 3600 && req.body < 86400) {
+      const hours = req.body / 3600;
+      const minutes = req.body % 60;
+      res.send( minutes + " minute and " + seconds + " seconds");
    }
 })
 
 
 app.post('/level1/task1', function (req, res) {
    console.log("level1/task1")
+   console.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send('Hello');
 })
 
 app.post('/level1/task2', function (req, res) {
    console.log("level1/task2")
+   console.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send('Hello');
 })
 
 app.post('/level1/task3', function (req, res) {
    console.log("level1/task3")
+   console.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send('Hello');
 })
 
