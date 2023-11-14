@@ -150,16 +150,22 @@ app.post('/level1/task3', function (req, res) {
 
 app.post('/level2/task1', function (req, res) {
    console.log("level2/task1")
+   onsole.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send("Hello");
 })
 
 app.post('/level2/task2', function (req, res) {
    console.log("level2/task2")
+   onsole.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send("Hello");
 })
 
 app.post('/level2/task3', function (req, res) {
    console.log("level2/task3")
+   onsole.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send("Hello");
 })
 
