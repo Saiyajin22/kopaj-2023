@@ -98,7 +98,58 @@ app.post('/level1/task1', function (req, res) {
    console.log("level1/task1")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.send('Hello');
+   // Morse code mapping
+   const morseCodeMapping = {
+      'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
+      'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
+      'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+      'Y': '-.--', 'Z': '--..',
+      '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....',
+      '7': '--...', '8': '---..', '9': '----.'
+   };
+
+   function textToMorse(text) {
+      return text.toUpperCase().split('').map(char => morseCodeMapping[char] || char).join(' ');
+   }
+
+   function morseToText(morseCode) {
+      const morseCodeArray = morseCode.split(' ');
+      return morseCodeArray.map(code => {
+         for (let key in morseCodeMapping) {
+            if (morseCodeMapping[key] === code) {
+               return key;
+            }
+         }
+         return code; // If not found in mapping, keep the original code
+      }).join('');
+   }
+
+   function isMorseCode(input) {
+      // Check for the presence of characters other than dots, dashes, and spaces
+      if (/[^ .-]/.test(input)) {
+         return false; // Contains characters other than dots, dashes, and spaces
+      }
+
+      // Check for the presence of spaces; if there are spaces, it's likely Morse code
+      return /\s/.test(input);
+   }
+
+   // const inputText = 'SOS';
+   // const inputMorseCode = '... --- ...';
+   //
+   // const morseOutput = textToMorse(inputText);
+   // const textOutput = morseToText(inputMorseCode);
+   let result = "";
+   if(isMorseCode(req.body)) {
+      result = morseToText(req.body);
+   } else {
+      result = textToMorse(req.body);
+   }
+   res.send(result);
+
+   // console.log(`Text to Morse: ${inputText} -> ${morseOutput}`);
+   // console.log(`Morse to Text: ${inputMorseCode} -> ${textOutput}`);
+
 })
 
 app.post('/level1/task2', function (req, res) {
