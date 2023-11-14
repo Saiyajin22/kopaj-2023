@@ -321,13 +321,13 @@ app.post('/level3/task1', function (req, res) {
    console.log("Body: " + req.body)
 
 
-   const pl = new Set(req.body.edges.map(e => e.destination.name)).size()
+   const pl = req.body.nodes.length
 
    // cost src visited
    const paths = [[0, "START", new Set(["Start"])]]
    const newpaths = []
 
-   while(paths.some(p => p[2].size() != pl)) {
+   while(paths.some(p => p[2].length != pl)) {
 
       for (const path of paths) {
          for (const edge of req.body.edges) {
@@ -342,7 +342,7 @@ app.post('/level3/task1', function (req, res) {
          newpaths = []
       }
    
-   const sol = paths.find(p => p[2].size() == pl)
+   const sol = paths.find(p => p[2].length == pl)
    if (sol[0] > 5000) {
       res.json({
          "pubs" : [ "START", "KOLI" ],
