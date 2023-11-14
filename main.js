@@ -29,6 +29,20 @@ app.post('/ground/task3', function (req, res) {
    console.log("ground/task3")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
+
+   if(req.body === 0){
+      res.send("Now");
+   }
+   else if(req.body < 60){
+      res.send(req.body + "seconds");
+   }
+   else if(req.body > 60){
+      const hours = Math.floor(req.body / 3600)
+      const minutes = Math.floor((req.body % 3600) / 60)
+      res.send(hours + "hour, " + minutes + " minute and " + "");
+
+   }
+
    res.send('Hello');
 })
 
