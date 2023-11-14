@@ -21,19 +21,33 @@ app.post('/ground/task1', function (req, res) {
 app.post('/ground/task2', function (req, res) {
    console.log("ground/task2")
    console.log("Headers: " + JSON.stringify(req.headers))
-   console.log("Body: " + req.body)
-   let number = req.body;
-   let result = "NONE";
-   for(let i = 2; i < number; i++) {
-      number = number / i;
-      if(number === 1) {
-         result = i;
-         break;
-      }
-   }
-   console.log("number: ", number)
+   console.log("Body: " + req.body) // 5040
+   // let number = req.body;
+   // let result = "NONE";
+   // for(let i = 2; i < number; i++) {
+   //    number = number / i;
+   //    if(number === 1) {
+   //       result = i;
+   //       break;
+   //    }
+   // }
+   // console.log("number: ", number)
+   function reverseFactorial(num) {
+      let product = 1,
+          n = 1;
 
-   res.send(result);
+      while (product <= num) {
+         if (product === num) {
+            return n;
+         }
+         product *= ++n;
+      }
+      return "NONE";
+   }
+
+   const factRes = reverseFactorial(req.body);
+   console.log(factRes);
+   res.send(factRes);
 })
 
 app.post('/ground/task3', function (req, res) {
