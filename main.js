@@ -283,8 +283,8 @@ app.post('/level2/task3', function (req, res) {
    console.log("Body: " + req.body)
    const ks = []
    const lines = req.body.split('\n')
-   for (const i = 0; i < lines.size(); i++) {
-      for (const j = 0; j < lines[i].length; j++) {
+   for (let i = 0; i < lines.size; i++) {
+      for (let j = 0; j < lines[i].length; j++) {
          if (lines[i][j] === '♞' || lines[i][j] === '♘')
             ks.push([i,j]);
       }
