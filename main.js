@@ -110,8 +110,17 @@ app.post('/level1/task2', function (req, res) {
           allCards.push(rank + suit);
         }
       }
+    
+      // Adding the jokers
+      allCards.push('JK', 'JK');
+    
+      return allCards;
+    }
 
-   res.send('Hello');
+    const shuffledCards = req.body.split(' ');
+    const missingCards = findMissingCards(shuffledCards);
+    console.log("Missing cards: "+ missingCards)
+   res.send(missingCards);
 })
 
 app.post('/level1/task3', function (req, res) {
