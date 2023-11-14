@@ -20,14 +20,12 @@ app.post('/ground/task1', function (req, res) {
 app.post('/ground/task2', function (req, res) {
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.status(3200);
    res.send('Hello');
 })
 
 app.post('/ground/task3', function (req, res) {
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.status(3200);
    res.send('Hello');
 })
 
