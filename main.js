@@ -78,7 +78,7 @@ app.post('/ground/task3', function (req, res) {
    }
    let mins = (rem - rem % 60) / 60
    if (mins !== 0) {
-      str += `, ${mins} hour${ mins == 1 ? '' :'s'}`
+      str += `, ${mins} minute${ mins == 1 ? '' :'s'}`
       rem -= mins * 60
    }
    if (rem !== 0){
