@@ -85,6 +85,32 @@ app.post('/level1/task2', function (req, res) {
    console.log("level1/task2")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
+
+   function findMissingCards(shuffledCards) {
+      const allCards = generateAllCards();
+      const shuffledSet = new Set(shuffledCards);
+      const missingCards = [];
+    
+      for (const card of allCards) {
+        if (!shuffledSet.has(card)) {
+          missingCards.push(card);
+        }
+      }
+    
+      return missingCards.sort().join(' ');
+    }
+    
+    function generateAllCards() {
+      const ranks = '23456789TJQKA';
+      const suits = 'SHCD';
+      const allCards = [];
+    
+      for (const rank of ranks) {
+        for (const suit of suits) {
+          allCards.push(rank + suit);
+        }
+      }
+
    res.send('Hello');
 })
 
