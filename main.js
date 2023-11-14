@@ -207,45 +207,47 @@ app.post('/level1/task3', function (req, res) {
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
 
+   const intactBunnyPattern = [
+      '(\\(\\',
+      '(-.-)',
+      '(")(")',
+    ];
+
    function findIntactBunnyNose(input) {
       const rows = input.split('\n');
-    
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-    
-        for (let j = 0; j < row.length; j++) {
-          if (isIntactBunnyNose(rows, i, j)) {
-            return `${i} ${j}`;
-          }
-        }
+      for(let i = 0 ; i < rows.length;i++){
+         if(rows[i].includes(intactBunnyPattern[0])){
+            if (rows[i+1].includes(intactBunnyPattern[1]) && rows[i+1].indexOf(intactBunnyPattern[1][0]) ===rows[i].indexOf(intactBunnyPattern[0][0])){
+               if(rows[i+2].includes(intactBunnyPattern[2]) && rows[i+2].indexOf(intactBunnyPattern[2][0]) === rows[i+1].indexOf(intactBunnyPattern[1][0])) {
+                  res.send(i + " " + rows[i+1].indexOf(intactBunnyPattern[1][2]));
+               }
+            }
+         }
       }
-    
-      return 'No intact bunny found.';
+      
     }
     
-    function isIntactBunnyNose(rows, i, j) {
-      const intactBunnyPattern = [
-        '(\\(\\',
-        '(-.-)',
-        '(")(")',
-      ];
+   //  function isIntactBunnyNose(rows, i, j) {
+   //    const intactBunnyPattern = [
+   //      '(\\(\\',
+   //      '(-.-)',
+   //      '(")(")',
+   //    ];
     
-      for (let k = 0; k < intactBunnyPattern.length; k++) {
-        const patternRow = intactBunnyPattern[k];
-        for (let l = 0; l < patternRow.length; l++) {
-          const char = patternRow[l];
-          if (rows[i + k] && rows[i + k][j + l] !== char) {
-            return false;
-          }
-        }
-      }
+   //    for (let k = 0; k < intactBunnyPattern.length; k++) {
+   //      const patternRow = intactBunnyPattern[k];
+   //      for (let l = 0; l < patternRow.length; l++) {
+   //        const char = patternRow[l];
+   //        if (rows[i + k] && rows[i + k][j + l] !== char) {
+   //          return false;
+   //        }
+   //      }
+   //    }
     
-      return true;
-    }
+   //    return true;
+   //  }
 
     const result = findIntactBunnyNose(req.body);
-
-   res.send(result);
 })
 
 app.post('/level2/task1', function (req, res) {
