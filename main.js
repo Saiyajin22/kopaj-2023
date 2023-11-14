@@ -273,7 +273,39 @@ app.post('/level2/task3', function (req, res) {
    console.log("level2/task3")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.send("Hello");
+   const ks = []
+   const lines = req.body.split('\n')
+   for (const i = 0; i < lines.size(); i++) {
+      for (const j = 0; j < lines[i].length; j++) {
+         if (lines[i][j] === '♞' || lines[i][j] === '♘')
+            ks.push([i,j]);
+      }
+   }
+
+   for (let [i,j] of ks){
+      try{
+         if (lines[i+1][j+2] !== '♛' && lines[i+1][j+2] !== '♕')
+            lines[i+1][j+2] = 'X'
+         if (lines[i+1][j-2] !== '♛' && lines[i+1][j-2] !== '♕')
+            lines[i+1][j-2] = 'X'
+         if (lines[i-1][j+2] !== '♛' && lines[i-1][j+2] !== '♕')
+            lines[i-1][j+2] = 'X'
+         if (lines[i-1][j-2] !== '♛' && lines[i-1][j-2] !== '♕')
+            lines[i-1][j-2] = 'X'
+         if (lines[i+2][j+1] !== '♛' && lines[i+2][j+1] !== '♕')
+            lines[i+2][j+1] = 'X'
+         if (lines[i+2][j-1] !== '♛' && lines[i+2][j-1] !== '♕')
+            lines[i+2][j-1] = 'X'
+         if (lines[i-2][j+1] !== '♛' && lines[i-2][j+1] !== '♕')
+            lines[i-2][j+1] = 'X'
+         if (lines[i-2][j-1] !== '♛' && lines[i-2][j-1] !== '♕')
+            lines[i-2][j-1] = 'X'
+      }
+      catch {}
+   }
+
+   res.send(lines.join('\n'))
+
 })
 
 app.post('/level3/task1', function (req, res) {
