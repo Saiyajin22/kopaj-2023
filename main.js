@@ -278,6 +278,8 @@ app.post('/level2/task3', function (req, res) {
 
 app.post('/level3/task1', function (req, res) {
    console.log("level3/task1")
+   console.log("Headers: " + JSON.stringify(req.headers))
+   console.log("Body: " + req.body)
    res.send('Hello');
 })
 
