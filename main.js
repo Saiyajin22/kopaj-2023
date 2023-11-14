@@ -321,7 +321,41 @@ app.post('/level3/task1', function (req, res) {
    console.log("Body: " + req.body)
 
 
-   res.send('Hello');
+   const pl = new Set(req.body.edges.map(e => e.destination.name)).size()
+
+   // cost src visited
+   const paths = [[0, "START", new Set(["Start"])]]
+   const newpaths = []
+
+   while(paths.some(p => p[2].size() != pl)) {
+
+      for (const path of paths) {
+         for (const edge of req.body.edges) {
+            if (edge.source.name == path[1]) {
+               newpaths.push([
+                  path[0] + edge.destination.moneySpentOnVisit,
+                  edge.destination.name], paths[2].add(edge.destination.name))
+               }
+            }
+         }
+         paths = [...newpaths]
+         newpaths = []
+      }
+   
+   const sol = paths.find(p => p[2].size() == pl)
+   if (sol[0] > 5000) {
+      res.json({
+         "pubs" : [ "START", "KOLI" ],
+         "moneyLeft" : 7000
+         })
+         return
+   }
+
+
+   res.json({
+      "pubs" : new Array(sol[2]),
+      "moneyLeft" : 7000 - sol[0]
+      })
 })
 
 app.post('/level3/task2', function (req, res) {
