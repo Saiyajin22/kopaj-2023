@@ -92,7 +92,7 @@ app.post('/ground/task3', function (req, res) {
    const idx = Array.from(str).reverse().findIndex(s => s == ',')
    const first = Array.from(str).reverse().slice(0,idx)
    const second = Array.from(str).reverse().slice(idx+1)
-   const out = [...first, ['d','n','a',' '], ...second].reverse()
+   const out = [...first, ...['d','n','a',' '], ...second].reverse().joint('')
    res.send(out)
 })
 
