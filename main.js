@@ -207,33 +207,27 @@ app.post('/level1/task3', function (req, res) {
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
 
-   const intactBunnyPattern = [
-      '(\\(\\',
-      '(-.-)',
-      '(")(")',
-    ];
-
    for (let i = 1; i < req.body.split("\n").length; i++) {
       for (let j = 2; j < req.body.split("\n")[i].length; j++ ) {
          try {
             if (
-               req.body[i-1,j-2] == '(' &&
-               req.body[i-1,j-1] == '\\' &&
-               req.body[i-1,j] == '(' &&
-               req.body[i-1,j-1] == '\\' &&
+               row[i-1,j-2] == '(' &&
+               req.body.split("\n")[i-1][j-1] == '\\' &&
+               req.body.split("\n")[i-1][j] == '(' &&
+               req.body.split("\n")[i-1][j-1] == '\\' &&
 
-               req.body[i,j-2] == '(' &&
-               req.body[i,j-1] == '-' &&
-               req.body[i,j] == '.' &&
-               req.body[i,j+1] == '-' &&
-               req.body[i,j+2] == ')' &&
+               req.body.split("\n")[i][j-2] == '(' &&
+               req.body.split("\n")[i][j-1] == '-' &&
+               req.body.split("\n")[i][j] == '.' &&
+               req.body.split("\n")[i][j+1] == '-' &&
+               req.body.split("\n")[i][j+2] == ')' &&
 
-               req.body[i+1,j-2] == '(' &&
-               req.body[i+1,j-1] == '"' &&
-               req.body[i+1,j] == ')' &&
-               req.body[i+1,j+1] == '(' &&
-               req.body[i+1,j+2] == '"' &&
-               req.body[i+1,j+3] == ')'
+               req.body.split("\n")[i+1][j-2] == '(' &&
+               req.body.split("\n")[i+1][j-1] == '"' &&
+               req.body.split("\n")[i+1][j] == ')' &&
+               req.body.split("\n")[i+1][j+1] == '(' &&
+               req.body.split("\n")[i+1][j+2] == '"' &&
+               req.body.split("\n")[i+1][j+3] == ')'
             )
                res.send(`${i} ${j}`)
          } catch (error) {
@@ -266,7 +260,7 @@ app.post('/level2/task2', function (req, res) {
    console.log("level2/task2")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
-   res.send("Hello");
+   res.send(10);
 })
 
 app.post('/level2/task3', function (req, res) {
