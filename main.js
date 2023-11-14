@@ -87,9 +87,13 @@ app.post('/ground/task3', function (req, res) {
       rem -= mins * 60
    }
    if (rem !== 0){
-      str += `${str.length !== 0 ? ' and ' : ''}${rem} second${ rem == 1 ? '' :'s'}`
+      str += `${str.length !== 0 ? ', ' : ''}${rem} second${ rem == 1 ? '' :'s'}`
    }
-   res.send(str)
+   const idx = Array.from(str).reverse().findIndex(s => s == ',')
+   const first = Array.from(str).reverse().slice(0,idx)
+   const second = Array.from(str).reverse().slice(idx+1)
+   const out = [...first, ['d','n','a',' '], ...second].reverse()
+   res.send(out)
 })
 
 app.post('/ground/bonus', function (req, res) {
@@ -312,6 +316,8 @@ app.post('/level3/task1', function (req, res) {
    console.log("level3/task1")
    console.log("Headers: " + JSON.stringify(req.headers))
    console.log("Body: " + req.body)
+
+
    res.send('Hello');
 })
 
